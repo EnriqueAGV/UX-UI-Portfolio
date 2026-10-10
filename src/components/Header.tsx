@@ -6,7 +6,16 @@ export function Header() {
     <header className="site-header">
       <div className="container">
         <Link href="/" className="brand">
-          {site.name} <span>· {site.role}</span>
+          <span className="dots" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          <span>
+            <b>{site.name}</b>
+            <small>{site.role}</small>
+          </span>
         </Link>
         <nav className="nav" aria-label="Main">
           <Link href="/projects">Work</Link>

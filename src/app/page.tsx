@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SystemCard } from "@/components/SystemCard";
 import { ContactSection } from "@/components/ContactSection";
 import { projects } from "@/content/projects";
 import { about, experience, hero, site } from "@/content/site";
@@ -46,6 +47,7 @@ export default function Home() {
             {projects.map((p, i) => (
               <ProjectCard key={p.slug} project={p} priority={i === 0} />
             ))}
+            <SystemCard />
           </ul>
         </div>
       </section>

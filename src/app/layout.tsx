@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Albert_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site, experience } from "@/content/site";
 import "./globals.css";
 
-const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const sans = Albert_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,10 +29,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f6f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#111114" },
-  ],
+  themeColor: "#0e0e15",
 };
 
 const personJsonLd = {
@@ -47,7 +45,7 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <a href="#main" className="skip-link">
           Skip to content

@@ -11,7 +11,7 @@ export const site = {
   // Shown in the hero. Set to null to hide the badge.
   availability: "Open to product design roles",
   description:
-    "Enrique García is a product designer who ships banking and public-service products in El Salvador. Case studies on credit card onboarding, accessible transit and personalized e-commerce.",
+    "Enrique García is a product designer for fintech and public services in El Salvador. Case studies on a launched credit card app, its public site and design system, accessible transit and personalized e-commerce.",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/enrique-agv/" },
     { label: "GitHub", href: "https://github.com/EnriqueAGV" },
@@ -26,8 +26,8 @@ export const hero = {
     "I lead end-to-end UX/UI for retail banking at Banco Atlántida, where I designed the bank's digital credit card onboarding: launched on iOS and Android with an NPS of 86. I work best on complex, regulated products where clarity is the feature.",
   proof: [
     { value: "86", label: "NPS on the credit card onboarding I led" },
+    { value: "3.5%", label: "of 10K monthly visits convert to app downloads on One Web" },
     { value: "6+", label: "years designing digital products" },
-    { value: "iOS · Android · Web", label: "shipped across platforms" },
   ],
 };
 
