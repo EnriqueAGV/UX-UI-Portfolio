@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Attribution } from "@/components/Attribution";
+import { CountUp } from "@/components/Motion";
 import { ContactSection } from "@/components/ContactSection";
 import { NextProject } from "@/components/NextProject";
 import { ProjectNav } from "@/components/ProjectNav";
@@ -37,15 +38,10 @@ export default async function CaseStudy({ params }: Params) {
         <header className="cs-hero">
           <div className="cs-intro">
             <div>
-              <div className="project-meta">
-                <span className="pill pill-status">{project.status}</span>
-                {project.date && <span>{project.date}</span>}
-                {project.tags.map((t) => (
-                  <span className="pill" key={t}>
-                    {t}
-                  </span>
-                ))}
-              </div>
+              <p className="meta-line">
+                <span className="sw" aria-hidden="true" />
+                {[project.status, project.date, ...project.tags].filter(Boolean).join(" · ")}
+              </p>
               <h1>{project.headline}</h1>
               <p className="lede">{project.summary}</p>
             </div>
@@ -61,7 +57,7 @@ export default async function CaseStudy({ params }: Params) {
           </dl>
         </header>
 
-        <section aria-labelledby="tldr-title">
+        <section aria-labelledby="tldr-title" data-reveal>
           <h2 id="tldr-title" className="visually-hidden">
             Summary
           </h2>
@@ -83,7 +79,9 @@ export default async function CaseStudy({ params }: Params) {
             <ul className="outcomes" aria-label="Key numbers">
               {project.outcomes.map((o) => (
                 <li key={o.label}>
-                  <strong>{o.value}</strong>
+                  <strong>
+                    <CountUp value={o.value} />
+                  </strong>
                   <span>{o.label}</span>
                 </li>
               ))}
@@ -115,7 +113,7 @@ function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
     case "quote":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           <blockquote className="pullquote">
             <p>“{block.text}”</p>
             {block.cite && <footer>{block.cite}</footer>}
@@ -124,7 +122,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "text":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           {block.eyebrow && <p className="eyebrow">{block.eyebrow}</p>}
           <h2>{block.heading}</h2>
           <div className="prose">
@@ -136,7 +134,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "insights":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           <h2>{block.heading}</h2>
           {block.items.map((it, i) => (
             <div className="insight" key={it.title}>
@@ -159,7 +157,7 @@ function BlockView({ block }: { block: Block }) {
     case "principles":
     case "personas":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           <h2>{block.heading}</h2>
           <ul className="card-grid">
             {block.kind === "problems" &&
@@ -190,7 +188,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "steps":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           <h2>{block.heading}</h2>
           <ol className="steps">
             {block.items.map((s) => (
@@ -204,7 +202,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "list":
       return (
-        <section className="cs-block">
+        <section className="cs-block" data-reveal>
           <h2>{block.heading}</h2>
           <ul className="bullets">
             {block.items.map((it) => (

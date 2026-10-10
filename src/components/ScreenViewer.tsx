@@ -20,12 +20,16 @@ export function ScreenViewer({
   decisions: Decision[];
 }) {
   const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
   const stageRef = useRef<HTMLDivElement>(null);
   const filmRef = useRef<HTMLDivElement>(null);
   const touchX = useRef<number | null>(null);
   const screen = screens[idx];
 
-  const go = (i: number) => setIdx((i + screens.length) % screens.length);
+  const go = (i: number) => {
+    setDir(i >= idx ? 1 : -1);
+    setIdx((i + screens.length) % screens.length);
+  };
 
   // Keep the active thumbnail in view.
   useEffect(() => {
@@ -44,7 +48,7 @@ export function ScreenViewer({
 
   return (
     <>
-      <section className="viewer" aria-label={`${title} screens`}>
+      <section className="viewer" data-reveal aria-label={`${title} screens`}>
         <div
           ref={stageRef}
           className={`stage${frame === "browser" ? " wide" : ""}`}
@@ -62,7 +66,7 @@ export function ScreenViewer({
             touchX.current = null;
           }}
         >
-          <div className="device">
+          <div className="device" data-dir={dir}>
             <Device
               key={screen.src}
               frame={frame}
@@ -73,10 +77,14 @@ export function ScreenViewer({
               priority={idx === 0}
             />
           </div>
-          <div className="viewer-info" aria-live="polite">
-            <p className="n">{screen.n}</p>
-            <h3>{screen.t}</h3>
-            <p>{screen.d}</p>
+          <div className="viewer-info">
+            <div className="viewer-text" aria-live="polite">
+              <div key={idx} data-dir={dir}>
+                <p className="n">{screen.n}</p>
+                <h3>{screen.t}</h3>
+                <p>{screen.d}</p>
+              </div>
+            </div>
             <div className="viewer-arrows">
               <button type="button" className="screen-nav" onClick={() => go(idx - 1)} aria-label="Previous screen">
                 <span aria-hidden="true">←</span>
@@ -106,7 +114,7 @@ export function ScreenViewer({
         </div>
       </section>
 
-      <section className="cs-block" aria-labelledby="decisions-title">
+      <section className="cs-block" data-reveal aria-labelledby="decisions-title">
         <div className="sec-h">
           <h2 id="decisions-title">Design decisions</h2>
           <span className="note">Each card opens the screen it's about.</span>

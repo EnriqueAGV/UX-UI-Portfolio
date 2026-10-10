@@ -19,10 +19,10 @@ export default function DesignSystem() {
       <ProjectNav current={system.slug} />
       <article className="container">
         <header className="cs-hero">
-          <div className="project-meta">
-            <span className="pill pill-status">Design system</span>
-            <span className="pill">One App</span>
-          </div>
+          <p className="meta-line">
+            <span className="sw" aria-hidden="true" />
+            Design system · One App
+          </p>
           <h1>{system.headline}</h1>
           <p className="lede">{system.summary}</p>
           <dl className="facts">
@@ -35,7 +35,7 @@ export default function DesignSystem() {
           </dl>
         </header>
 
-        <section className="cs-block" aria-labelledby="color-title">
+        <section className="cs-block" data-reveal aria-labelledby="color-title">
           <div className="sec-h">
             <h2 id="color-title">Color</h2>
             <span className="note">Primitive palettes. ★ marks the base color of each scale.</span>
@@ -87,7 +87,7 @@ export default function DesignSystem() {
           </div>
         </section>
 
-        <section className="cs-block" aria-labelledby="type-title">
+        <section className="cs-block" data-reveal aria-labelledby="type-title">
           <div className="sec-h">
             <h2 id="type-title">Typography</h2>
             <span className="note">Albert Sans, mapped to native text styles so sizes scale with each platform&apos;s accessibility settings.</span>
@@ -122,7 +122,7 @@ export default function DesignSystem() {
           </div>
         </section>
 
-        <section className="cs-block" aria-labelledby="components-title">
+        <section className="cs-block" data-reveal aria-labelledby="components-title">
           <div className="sec-h">
             <h2 id="components-title">Components</h2>
             <span className="note">From the One App Figma library.</span>

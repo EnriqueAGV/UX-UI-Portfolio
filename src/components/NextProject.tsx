@@ -10,7 +10,7 @@ const order = [
 export function NextProject({ current }: { current: string }) {
   const next = order[(order.findIndex((p) => p.slug === current) + 1) % order.length];
   return (
-    <aside className="next-project" aria-label="Next case study" style={{ "--accent": next.accent } as React.CSSProperties}>
+    <aside className="next-project" data-reveal aria-label="Next case study" style={{ "--accent": next.accent } as React.CSSProperties}>
       <div>
         <p className="eyebrow">Next project</p>
         <h2>
